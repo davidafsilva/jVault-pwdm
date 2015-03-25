@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# detect java
+_java=`type -p java`
+if [[ -z "$_java" ]] && [[ -n "$JAVA_HOME" ]] && [[ -x "$JAVA_HOME/bin/java" ]];  then
+    _java="$JAVA_HOME/bin/java"
+fi
+
+# run the vault
+if [[ -n "$_java" ]]; then
+    $_java -jar jvault-pwdm-cli.jar $@ --vault-folder $HOME/.config/jVault-pwdm --with-password
+fi

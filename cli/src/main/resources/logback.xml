@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  ~ Copyright (c) 2014 Coriant. All Rights Reserved.
+  ~
+  ~ This software is the confidential and proprietary information of Coriant
+  ~ ("Confidential Information"). You shall not disclose such
+  ~ Confidential Information and shall use it only in accordance with the
+  ~ terms of the license agreement you entered into with Coriant.
+  ~
+  ~ CORIANT MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE
+  ~ SUITABILITY OF THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT
+  ~ LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
+  ~ PARTICULAR PURPOSE, OR NON-INFRINGEMENT. CORIANT SHALL NOT
+  ~ BE LIABLE FOR ANY DAMAGES SUFFERED BY LICENSEE AS A RESULT OF USING,
+  ~ MODIFYING OR DISTRIBUTING THIS SOFTWARE OR ITS DERIVATIVES.
+  -->
+
+<configuration scan="true">
+    <!-- define the file appender -->
+    <appender name="logfile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${user.home}/.config/jVault-pwdm/jVault.log</file>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{5}.%M at %L - %msg%n</pattern>
+            <immediateFlush>true</immediateFlush>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <maxIndex>3</maxIndex>
+            <FileNamePattern>jVault.log.%i</FileNamePattern>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>32MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <!-- set the loggers -->
+    <root level="ERROR">
+        <appender-ref ref="logfile"/>
+    </root>
+</configuration>
